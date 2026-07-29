@@ -15,5 +15,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Layout primitives (nav, hero, page container, footer)
 - Typography styles (headings, code blocks, tables)
 - Components (cards, buttons, badges, alerts, tags, inputs)
-- HTML templates (home, docs, project, error)
+- HTML templates (home, docs, project, error, about, projects)
 - `mark.svg` shared logo asset

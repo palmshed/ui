@@ -8,7 +8,6 @@ Shared design system for Palmshed projects. Framework-agnostic CSS and HTML temp
 - `assets/` - Shared SVG assets (mark.svg)
 - `templates/` - HTML starting points for new project sites
 - `examples/` - Usage examples for different frameworks
-- `docs/` - Documentation
 
 ## Usage
 
@@ -29,7 +28,7 @@ Link CSS files in any HTML page:
 | `--bg` | `#080909` |
 | `--surface` | `#0e1010` |
 | `--text` | `#e1e2e2` |
-| `--text-secondary` | `#8f9191` |
+| `--muted` | `#8f9191` |
 | `--accent` | `#91AAA6` |
 | `--border` | `rgba(255,255,255,0.04)` |
 | `--code-bg` | `rgba(255,255,255,0.015)` |
