@@ -1,0 +1,23 @@
+{
+  "name": "@palmshed/ui",
+  "version": "0.1.0",
+  "description": "Palmshed shared design system and UI components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palmshed/ui.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "design-system",
+    "css",
+    "components",
+    "palmshed"
+  ],
+  "files": [
+    "css/",
+    "assets/",
+    "templates/",
+    "README.md"
+  ]
+}
