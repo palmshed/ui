@@ -4,11 +4,11 @@ Shared design system for Palmshed projects. Framework-agnostic CSS and HTML temp
 
 ## Structure
 
-- `css/` — Design tokens and CSS modules
-- `assets/` — Shared SVG assets (mark.svg)
-- `templates/` — HTML starting points for new project sites
-- `examples/` — Usage examples for different frameworks
-- `docs/` — Documentation
+- `css/` - Design tokens and CSS modules
+- `assets/` - Shared SVG assets (mark.svg)
+- `templates/` - HTML starting points for new project sites
+- `examples/` - Usage examples for different frameworks
+- `docs/` - Documentation
 
 ## Usage
 
