@@ -59,12 +59,12 @@ th, td {
 }
 
 th {
-  color: var(--text-secondary);
+  color: var(--muted);
   font-weight: 500;
 }
 
 td {
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 tr:last-child td {

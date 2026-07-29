@@ -6,7 +6,7 @@
   border-radius: 999px;
   background: var(--code-bg);
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -26,7 +26,7 @@
 
 .card-desc {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--muted);
   margin-top: 0.25rem;
 }
 
@@ -81,7 +81,7 @@
   border-radius: 999px;
   background: var(--code-bg);
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 .alert {
@@ -95,7 +95,7 @@
 .alert-info {
   background: var(--code-bg);
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--muted);
 }
 
 .code-block {

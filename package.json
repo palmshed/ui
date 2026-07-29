@@ -18,6 +18,12 @@
     "css/",
     "assets/",
     "templates/",
-    "README.md"
+    "examples/",
+    "README.md",
+    "DESIGN.md",
+    "STYLEGUIDE.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
   ]
 }
