@@ -22,15 +22,14 @@ done
 
 echo "=== Checking asset references ==="
 for f in templates/*.html docs/*.html; do
-  grep -oE '(href|src)="([^"]+)"' "$f" | while read -r match; do
-    path=$(echo "$match" | sed 's/.*"\(.*\)"/\1/')
-    case "$path" in
+    for ref in $(grep -oE '(href|src)="[^"]+"' "$f" | sed 's/^[^"]*"//;s/"$//'); do
+    case "$ref" in
       http*|'#'*) continue ;;
-      ../*) resolved="${path#../}" ;;
+      ../*) target="${ref#../}" ;;
       *) continue ;;
     esac
-    if [ ! -f "$resolved" ]; then
-      echo "MISSING: $path referenced in $f"
+    if [ ! -f "$target" ]; then
+      echo "MISSING: $ref in $f"
       status=1
     fi
   done
@@ -38,15 +37,14 @@ done
 
 echo "=== Checking internal links ==="
 for f in templates/*.html docs/*.html; do
-  grep -oE 'href="([^"]*\.html)"' "$f" | while read -r match; do
-    link=$(echo "$match" | sed 's/href="\(.*\)"/\1/')
+  for link in $(grep -oE 'href="[^"]*\.html"' "$f" | sed 's/^[^"]*"//;s/"$//'); do
     case "$link" in
       http*) continue ;;
-      ../templates/*) resolved="${link#../}" ;;
-      ../docs/*) resolved="${link#../}" ;;
+      ../templates/*) target="${link#../}" ;;
+      ../docs/*) target="${link#../}" ;;
       *) continue ;;
     esac
-    if [ ! -f "$resolved" ]; then
+    if [ ! -f "$target" ]; then
       echo "BROKEN LINK: $link in $f"
       status=1
     fi

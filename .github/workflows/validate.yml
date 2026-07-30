@@ -17,53 +17,41 @@ jobs:
 
       - name: HTML validation
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq tidy 2>/dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq tidy
           for f in templates/*.html docs/*.html examples/basic.html; do
-            if ! tidy -q -e "$f" 2>/dev/null; then
-              tidy -e "$f" 2>&1 | grep -v '^$' || true
-            fi
+            tidy -e -q "$f" 2>&1 | grep -v "^$" && exit 1 || true
           done
 
       - name: CSS syntax check
         run: |
-          pip install tinycss2 -q 2>/dev/null || true
           for f in css/*.css; do
-            if command -v python3 &>/dev/null; then
-              python3 -c "
-import re
-with open('$f') as fh:
-    content = fh.read()
-open_parens = content.count('{')
-close_parens = content.count('}')
-if open_parens != close_parens:
-    print(f'FAIL: {open_parens} opening braces vs {close_parens} closing braces in $f')
-    exit(1)
-print(f'OK: $f')
-" || exit 1
+            opens=$(grep -c '{' "$f" || true)
+            closes=$(grep -c '}' "$f" || true)
+            if [ "$opens" != "$closes" ]; then
+              echo "FAIL: ${opens} opens / ${closes} closes in $f"
+              exit 1
             fi
+            echo "OK: $f"
           done
 
       - name: Check asset references
         run: |
-          assets=$(find assets -type f | sed 's|^./||')
           for f in templates/*.html docs/*.html; do
-            grep -oP '(?:href|src)="([^"]+)"' "$f" | while read -r match; do
-              path=$(echo "$match" | sed 's/.*"\(.*\)"/\1/')
-              echo "$path" | grep -q '^http' && continue
-              echo "$path" | grep -q '^#' && continue
-              resolved="$path"
-              case "$resolved" in
-                ../*) resolved="${resolved#../}";;
-                *) continue;;
+            for ref in $(grep -oE '(href|src)="[^"]+"' "$f" | sed 's/^[^"]*"//;s/"$//'); do
+              case "$ref" in
+                http*|'#'*) continue ;;
+                ../*) target="${ref#../}" ;;
+                *) continue ;;
               esac
-              if [ ! -f "$resolved" ] && [ ! -f "${resolved#./}" ]; then
-                echo "MISSING: $path referenced in $f"
+              if [ ! -f "$target" ]; then
+                echo "MISSING: $ref in $f"
                 exit 1
               fi
             done
           done
 
-      - name: Check template consistency
+      - name: Check template structure
         run: |
           for f in templates/*.html; do
             grep -q '<!DOCTYPE html>' "$f" || { echo "Missing DOCTYPE in $f"; exit 1; }
@@ -71,17 +59,19 @@ print(f'OK: $f')
             grep -q '<footer>' "$f" || { echo "Missing <footer> in $f"; exit 1; }
           done
 
-      - name: Verify no broken internal links
+      - name: Verify internal links
         run: |
           for f in templates/*.html docs/*.html; do
-            grep -oP 'href="([^"]*\.html)"' "$f" | while read -r match; do
-              link=$(echo "$match" | sed 's/href="\(.*\)"/\1/')
+            for link in $(grep -oE 'href="[^"]*\.html"' "$f" | sed 's/^[^"]*"//;s/"$//'); do
               case "$link" in
-                http*) continue;;
-                ../templates/*) resolved="${link#../}";;
-                ../docs/*) resolved="${link#../}";;
-                *) continue;;
+                http*) continue ;;
+                ../templates/*) target="${link#../}" ;;
+                ../docs/*) target="${link#../}" ;;
+                *) continue ;;
               esac
-              [ -f "$resolved" ] || { echo "BROKEN LINK: $link in $f"; exit 1; }
+              if [ ! -f "$target" ]; then
+                echo "BROKEN LINK: $link in $f"
+                exit 1
+              fi
             done
           done
