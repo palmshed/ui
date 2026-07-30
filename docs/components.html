@@ -19,6 +19,9 @@
     .component-section { margin-bottom: 3rem; }
     .do-list { color: var(--accent); }
     .dont-list { color: #e57373; }
+    .preview-card { max-width: 360px; }
+    .preview-input { max-width: 360px; }
+    .preview-note { border-color: var(--accent); color: var(--accent); }
   </style>
 </head>
 <body>
@@ -88,7 +91,7 @@
       <p>Use for summarizing projects, linking to content, or grouping related information.</p>
 
       <div class="preview">
-        <div class="card" style="max-width: 360px;">
+        <div class="card preview-card">
           <a href="#">
             <div class="card-name">Project name</div>
             <div class="card-desc">Short description of the project and what it does.</div>
@@ -196,7 +199,7 @@
       <div class="preview">
         <div class="alert alert-info">This is an informational message.</div>
         <!-- Variant demonstration: using same class as placeholder -->
-        <div class="alert alert-info" style="border-color: var(--accent); color: var(--accent);">This is a note with accent border.</div>
+        <div class="alert alert-info preview-note">This is a note with accent border.</div>
       </div>
 
       <pre><code>&lt;div class="alert alert-info"&gt;
@@ -234,7 +237,7 @@
       <p>Use for text-based form inputs. Includes focus styling via <code>:focus</code>.</p>
 
       <div class="preview">
-        <input type="text" class="input" placeholder="Enter your email" style="max-width: 360px;">
+        <input type="text" class="input preview-input" placeholder="Enter your email">
       </div>
 
       <pre><code>&lt;input type="text" class="input" placeholder="Enter your email"&gt;</code></pre>

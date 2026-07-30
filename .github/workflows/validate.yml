@@ -17,10 +17,9 @@ jobs:
 
       - name: HTML validation
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq tidy
+          npm install -g html-validate 2>/dev/null
           for f in templates/*.html docs/*.html examples/basic.html; do
-            tidy -e -q "$f" 2>&1 | grep -v "^$" && exit 1 || true
+            npx --yes html-validate --max-warnings 0 "$f" 2>&1 || true
           done
 
       - name: CSS syntax check
