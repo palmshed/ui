@@ -1,5 +1,10 @@
 # palmshed/ui
 
+[![Docs](https://img.shields.io/badge/docs-palmshed.github.io/ui-91AAA6?style=flat-square)](https://palmshed.github.io/ui)
+[![Validate](https://img.shields.io/github/actions/workflow/status/palmshed/ui/validate.yml?branch=main&label=validate&style=flat-square)](https://github.com/palmshed/ui/actions/workflows/validate.yml)
+[![License](https://img.shields.io/github/license/palmshed/ui?color=8f9191&style=flat-square)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/palmshed/ui?color=e1e2e2&style=flat-square)](https://github.com/palmshed/ui/releases)
+
 Shared design system for Palmshed projects. Framework-agnostic CSS and HTML templates.
 
 ## Files
@@ -13,17 +18,37 @@ Shared design system for Palmshed projects. Framework-agnostic CSS and HTML temp
 | `css/components.css` | Reusable components (cards, buttons, badges, alerts) |
 | `assets/mark.svg` | Organization logo |
 | `templates/` | HTML starting points for new sites |
+| `docs/` | Living documentation site |
 
 ## Usage
 
-Link the CSS files in any HTML page:
+### As a submodule or vendor directory
+
+Copy or submodule the repository into your project, then link the CSS files using relative or server-relative paths:
 
 ```html
-<link rel="stylesheet" href="/ui/tokens.css">
-<link rel="stylesheet" href="/ui/base.css">
-<link rel="stylesheet" href="/ui/layout.css">
-<link rel="stylesheet" href="/ui/typography.css">
-<link rel="stylesheet" href="/ui/components.css">
+<link rel="stylesheet" href="/vendor/palmshed-ui/css/tokens.css">
+<link rel="stylesheet" href="/vendor/palmshed-ui/css/base.css">
+<link rel="stylesheet" href="/vendor/palmshed-ui/css/layout.css">
+<link rel="stylesheet" href="/vendor/palmshed-ui/css/typography.css">
+<link rel="stylesheet" href="/vendor/palmshed-ui/css/components.css">
+```
+
+### From the repository root (development)
+
+When working on the design system itself, use relative paths from `templates/` or `docs/`:
+
+```html
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+```
+
+### With a URL prefix (GitHub Pages)
+
+If hosting at a path prefix, adjust the paths accordingly:
+
+```html
+<link rel="stylesheet" href="/ui/css/tokens.css">
 ```
 
 ## Design tokens

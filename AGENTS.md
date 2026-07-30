@@ -8,17 +8,24 @@ Shared design system for Palmshed projects. Framework-agnostic CSS and HTML temp
 - `assets/` - Shared SVG assets (mark.svg)
 - `templates/` - HTML starting points for new project sites
 - `examples/` - Usage examples for different frameworks
+- `docs/` - Living documentation site built with palmshed/ui
 
 ## Usage
 
-Link CSS files in any HTML page:
+From `templates/` or `docs/`, reference CSS with relative paths:
 
 ```html
-<link rel="stylesheet" href="/ui/tokens.css">
-<link rel="stylesheet" href="/ui/base.css">
-<link rel="stylesheet" href="/ui/layout.css">
-<link rel="stylesheet" href="/ui/typography.css">
-<link rel="stylesheet" href="/ui/components.css">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/typography.css">
+<link rel="stylesheet" href="../css/components.css">
+```
+
+Consuming projects adjust the path based on their deployment:
+
+```html
+<link rel="stylesheet" href="/vendor/palmshed-ui/css/tokens.css">
 ```
 
 ## Design tokens
@@ -42,3 +49,53 @@ Link CSS files in any HTML page:
 - `transition:none` on nav links
 - `mark.svg` as the shared logo asset
 - `.nojekyll` file for GitHub Pages compatibility
+
+## Principles
+
+### Adoption over expansion
+
+New components should be added because multiple projects need them, not because they might be useful someday.
+
+### Scope
+
+`palmshed/ui` provides a shared visual language for Palmshed projects through HTML templates, CSS modules, design tokens, and static assets.
+
+It does **not**:
+
+- Include a JavaScript framework.
+- Require a build step.
+- Provide application logic.
+- Implement state management.
+- Bundle CSS automatically.
+- Depend on React, Vue, Svelte, or any other framework.
+
+Framework integrations belong in examples or thin adapters, not in the core design system.
+
+### Release policy
+
+- **Patch (`1.0.x`)**: bug fixes, documentation, accessibility improvements.
+- **Minor (`1.1.x`)**: new components, new templates, new design tokens.
+- **Major (`2.0.0`)**: breaking changes to tokens, CSS classes, or template structure.
+
+### New component acceptance rule
+
+Before adding a new component, all of the following must be true:
+
+1. Has this been needed by at least two Palmshed projects?
+2. Can it be implemented with HTML and CSS alone?
+3. Is it accessible by default?
+4. Can it be documented with a complete example?
+5. Does it avoid increasing complexity for existing users?
+
+If any answer is "no", don't add it yet.
+
+## Definition of Done
+
+A change is complete when:
+
+- Documentation is updated.
+- Accessibility has been verified.
+- Templates and examples are updated if applicable.
+- No breaking changes are introduced without a major version bump.
+- CI passes.
+- The change has been validated in at least one consuming project when appropriate.

@@ -1,0 +1,32 @@
+name: Documentation
+description: Report a documentation gap or improvement
+labels: [documentation]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What is missing or unclear?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: page
+    attributes:
+      label: Affected page
+      options:
+        - README
+        - DESIGN.md
+        - STYLEGUIDE.md
+        - TOKENS.md
+        - CONTRIBUTING.md
+        - docs/index.html
+        - docs/tokens.html
+        - docs/typography.html
+        - docs/layout.html
+        - docs/components.html
+        - docs/templates.html
+        - docs/accessibility.html
+        - docs/migration.html
+        - docs/browser-support.html
+        - docs/examples.html
+        - Other

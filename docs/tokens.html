@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design tokens - palmshed/ui</title>
+  <meta name="description" content="Reference for all CSS custom properties in palmshed/ui.">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/mark.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+  <nav>
+    <span class="nav-mark">palmshed/ui</span>
+    <ul class="nav-links" id="nav">
+      <li><a href="/docs/index.html">Docs</a></li>
+      <li><a href="/docs/components.html">Components</a></li>
+      <li><a href="/docs/tokens.html" class="active">Tokens</a></li>
+      <li><a href="/docs/templates.html">Templates</a></li>
+    </ul>
+    <button type="button" class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Design tokens</h1>
+      <p>All CSS custom properties in palmshed/ui, their values, and when to use them.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <section>
+      <h2>Token reference</h2>
+      <table>
+        <thead>
+          <tr><th>Token</th><th>Value</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--bg</code></td>
+            <td><code>#080909</code></td>
+            <td>Page background color.</td>
+          </tr>
+          <tr>
+            <td><code>--surface</code></td>
+            <td><code>#0e1010</code></td>
+            <td>Card, nav, and elevated surface backgrounds.</td>
+          </tr>
+          <tr>
+            <td><code>--text</code></td>
+            <td><code>#e1e2e2</code></td>
+            <td>Primary text color.</td>
+          </tr>
+          <tr>
+            <td><code>--muted</code></td>
+            <td><code>#8f9191</code></td>
+            <td>Secondary text, captions, metadata.</td>
+          </tr>
+          <tr>
+            <td><code>--accent</code></td>
+            <td><code>#91AAA6</code></td>
+            <td>Links, active states, interactive elements.</td>
+          </tr>
+          <tr>
+            <td><code>--border</code></td>
+            <td><code>rgba(255,255,255,0.04)</code></td>
+            <td>Subtle border color for cards and inputs.</td>
+          </tr>
+          <tr>
+            <td><code>--code-bg</code></td>
+            <td><code>rgba(255,255,255,0.015)</code></td>
+            <td>Background for inline <code>&lt;code&gt;</code> and <code>&lt;pre&gt;</code> blocks.</td>
+          </tr>
+          <tr>
+            <td><code>--font</code></td>
+            <td><code>-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, ...</code></td>
+            <td>Primary font stack (system fonts).</td>
+          </tr>
+          <tr>
+            <td><code>--mono</code></td>
+            <td><code>ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, ...</code></td>
+            <td>Monospace font stack for code.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Usage</h2>
+      <p>Use tokens in your own CSS by referencing the variable:</p>
+      <pre><code>.my-element {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Guidelines</h2>
+      <ul>
+        <li>Use <code>--text</code> for body copy, <code>--muted</code> for less prominent text.</li>
+        <li>Use <code>--accent</code> only for interactive elements and links.</li>
+        <li>Use <code>--surface</code> for elevated containers (cards, nav).</li>
+        <li>Use <code>--border</code> sparingly - prefer spacing to separate content.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Token policy</h2>
+      <p>Tokens are stable after <code>v1.0.0</code>. Renaming or removing a token is a breaking change. Adding a new token is non-breaking.</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Palmshed</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/palmshed">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    (function() {
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var nav = document.getElementById('nav');
+      if (!toggle || !nav) return;
+      function sync() { toggle.setAttribute('aria-expanded', nav.classList.contains('active')); }
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('active');
+        sync();
+      });
+      document.addEventListener('click', function(e) {
+        if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== toggle) {
+          nav.classList.remove('active');
+          sync();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          sync();
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

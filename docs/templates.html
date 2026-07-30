@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Templates - palmshed/ui</title>
+  <meta name="description" content="HTML templates included in palmshed/ui.">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/mark.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+  <nav>
+    <span class="nav-mark">palmshed/ui</span>
+    <ul class="nav-links" id="nav">
+      <li><a href="/docs/index.html">Docs</a></li>
+      <li><a href="/docs/components.html">Components</a></li>
+      <li><a href="/docs/tokens.html">Tokens</a></li>
+      <li><a href="/docs/templates.html" class="active">Templates</a></li>
+    </ul>
+    <button type="button" class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Templates</h1>
+      <p>11 HTML starting points for common page types. Each is a complete, accessible HTML document.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <section>
+      <p>Every template includes the nav structure, hero, page container, footer, and mobile menu script. Open any template below to view or use it as a starting point.</p>
+    </section>
+
+    <section>
+      <h2>Page templates</h2>
+
+      <div class="card">
+        <a href="/templates/home.html">
+          <div class="card-name">Home</div>
+          <div class="card-desc">Organization homepage with hero and project list.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/landing.html">
+          <div class="card-name">Landing</div>
+          <div class="card-desc">Product or marketing landing page.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/about.html">
+          <div class="card-name">About</div>
+          <div class="card-desc">About page with team or organization info.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/projects.html">
+          <div class="card-name">Projects</div>
+          <div class="card-desc">Project listing or portfolio index.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/project.html">
+          <div class="card-name">Project</div>
+          <div class="card-desc">Individual project detail page.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/docs.html">
+          <div class="card-name">Docs</div>
+          <div class="card-desc">Documentation or knowledge base page.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/blog.html">
+          <div class="card-name">Blog</div>
+          <div class="card-desc">Blog post listing or article index.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/pricing.html">
+          <div class="card-name">Pricing</div>
+          <div class="card-desc">Pricing tiers and plan comparison.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/dashboard.html">
+          <div class="card-name">Dashboard</div>
+          <div class="card-desc">Application dashboard or admin panel.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/changelog.html">
+          <div class="card-name">Changelog</div>
+          <div class="card-desc">Version history and release notes page.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/templates/error.html">
+          <div class="card-name">Error</div>
+          <div class="card-desc">404 or error page with navigation.</div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Creating a new template</h2>
+      <p>Copy an existing template and modify the content. Follow the existing structure:</p>
+      <ul>
+        <li>Include only the CSS files the page needs.</li>
+        <li>Use the standard nav, hero, .page, and footer layout.</li>
+        <li>Add the mobile menu script before <code>&lt;/body&gt;</code>.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Palmshed</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/palmshed">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    (function() {
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var nav = document.getElementById('nav');
+      if (!toggle || !nav) return;
+      function sync() { toggle.setAttribute('aria-expanded', nav.classList.contains('active')); }
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('active');
+        sync();
+      });
+      document.addEventListener('click', function(e) {
+        if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== toggle) {
+          nav.classList.remove('active');
+          sync();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          sync();
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility - palmshed/ui</title>
+  <meta name="description" content="Accessibility features and compliance in palmshed/ui.">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/mark.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .a11y-good { color: var(--accent); }
+    .a11y-bad { color: #e57373; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="nav-mark">palmshed/ui</span>
+    <ul class="nav-links" id="nav">
+      <li><a href="/docs/index.html">Docs</a></li>
+      <li><a href="/docs/components.html">Components</a></li>
+      <li><a href="/docs/tokens.html">Tokens</a></li>
+      <li><a href="/docs/templates.html">Templates</a></li>
+    </ul>
+    <button type="button" class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Accessibility</h1>
+      <p>Every component and template is designed to be accessible by default.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <section>
+      <h2>Built-in features</h2>
+
+      <h3>Keyboard navigation</h3>
+      <p>All interactive elements are native HTML elements (<code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>) and are keyboard accessible without additional scripting. The mobile menu supports Escape to close and returns focus to the toggle button.</p>
+
+      <h3>Focus states</h3>
+      <p>Base styles provide a visible <code>:focus-visible</code> outline using the accent color:</p>
+      <pre><code>:focus-visible {
+  outline: 1.5px solid var(--accent);
+  outline-offset: 2px;
+}</code></pre>
+      <p>Focus outlines are only shown when navigating via keyboard, not on mouse click, thanks to <code>:focus-visible</code>.</p>
+
+      <h3>Color contrast</h3>
+      <p>All token combinations meet WCAG AA contrast requirements:</p>
+      <table>
+        <thead><tr><th>Combination</th><th>Ratio</th><th>Passes AA</th></tr></thead>
+        <tbody>
+          <tr><td><code>--text</code> on <code>--bg</code></td><td>~14.4:1</td><td class="a11y-good">Yes</td></tr>
+          <tr><td><code>--muted</code> on <code>--bg</code></td><td>~6.7:1</td><td class="a11y-good">Yes</td></tr>
+          <tr><td><code>--accent</code> on <code>--bg</code></td><td>~6.6:1</td><td class="a11y-good">Yes</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Reduced motion</h3>
+      <p>The design system uses minimal transitions. The <code>transition: none</code> rule on nav links means no motion is triggered by default. No animations or keyframe-based effects are used.</p>
+
+      <h3>Zoom compatibility</h3>
+      <p>All sizing uses relative units (<code>rem</code>, <code>clamp</code>). Pages remain readable at 200% browser zoom with no content loss or horizontal overflow.</p>
+    </section>
+
+    <section>
+      <h2>Component guidance</h2>
+
+      <h3>Navigation</h3>
+      <ul>
+        <li><span class="a11y-good">Uses semantic <code>&lt;nav&gt;</code> element.</span></li>
+        <li><span class="a11y-good">Mobile toggle has <code>aria-label</code> and syncs <code>aria-expanded</code>.</span></li>
+        <li><span class="a11y-good">Link list uses <code>&lt;ul&gt;</code> for screen reader structure.</span></li>
+        <li><span class="a11y-good">Escape key closes mobile menu.</span></li>
+      </ul>
+
+      <h3>Cards</h3>
+      <ul>
+        <li><span class="a11y-good">Linked cards use a single anchor - no nested interactive elements.</span></li>
+        <li><span class="a11y-good">Card content is structurally grouped with <code>.card</code> container.</span></li>
+      </ul>
+
+      <h3>Buttons</h3>
+      <ul>
+        <li><span class="a11y-good">Semantic HTML - never <code>&lt;div&gt;</code> as button.</span></li>
+        <li><span class="a11y-good">Visible focus state.</span></li>
+      </ul>
+
+      <h3>Inputs</h3>
+      <ul>
+        <li><span class="a11y-good">Supports <code>:focus</code> with accent border.</span></li>
+        <li><span class="a11y-good">Works with native form labels.</span></li>
+      </ul>
+
+      <h3>Alerts</h3>
+      <ul>
+        <li><span class="a11y-good">Supports <code>role="alert"</code> and <code>role="status"</code> for dynamic content.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What to verify when using palmshed/ui</h2>
+      <ul>
+        <li>Headings follow a logical hierarchy (h1 > h2 > h3, no skips).</li>
+        <li>Each page has one <code>h1</code> matching the page title.</li>
+        <li>Interactive elements are keyboard accessible.</li>
+        <li>Form inputs have associated <code>&lt;label&gt;</code> elements.</li>
+        <li>Images and SVG icons have appropriate <code>alt</code> text.</li>
+        <li>Content is readable at 200% browser zoom.</li>
+        <li>Test with a screen reader (VoiceOver, NVDA, or JAWS).</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Palmshed</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/palmshed">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    (function() {
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var nav = document.getElementById('nav');
+      if (!toggle || !nav) return;
+      function sync() { toggle.setAttribute('aria-expanded', nav.classList.contains('active')); }
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('active');
+        sync();
+      });
+      document.addEventListener('click', function(e) {
+        if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== toggle) {
+          nav.classList.remove('active');
+          sync();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          sync();
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

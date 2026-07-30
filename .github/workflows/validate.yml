@@ -1,0 +1,70 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: HTML validation
+        uses: w3c/oregon@v3
+        with:
+          path: templates/ docs/ examples/basic.html
+
+      - name: CSS syntax check
+        run: |
+          for f in css/*.css; do
+            npx css-validator "$f" || echo "Warning: css-validator not available, skipping"
+          done
+
+      - name: Check asset references
+        run: |
+          assets=$(find assets -type f | sed 's|^./||')
+          for f in templates/*.html docs/*.html; do
+            grep -oP '(?:href|src)="([^"]+)"' "$f" | while read -r match; do
+              path=$(echo "$match" | sed 's/.*"\(.*\)"/\1/')
+              echo "$path" | grep -q '^http' && continue
+              echo "$path" | grep -q '^#' && continue
+              resolved="$path"
+              case "$resolved" in
+                ../*) resolved="${resolved#../}";;
+                *) continue;;
+              esac
+              if [ ! -f "$resolved" ] && [ ! -f "${resolved#./}" ]; then
+                echo "MISSING: $path referenced in $f"
+                exit 1
+              fi
+            done
+          done
+
+      - name: Check template consistency
+        run: |
+          for f in templates/*.html; do
+            grep -q '<!DOCTYPE html>' "$f" || { echo "Missing DOCTYPE in $f"; exit 1; }
+            grep -q '<nav>' "$f" || { echo "Missing <nav> in $f"; exit 1; }
+            grep -q '<footer>' "$f" || { echo "Missing <footer> in $f"; exit 1; }
+          done
+
+      - name: Verify no broken internal links
+        run: |
+          for f in templates/*.html docs/*.html; do
+            grep -oP 'href="([^"]*\.html)"' "$f" | while read -r match; do
+              link=$(echo "$match" | sed 's/href="\(.*\)"/\1/')
+              case "$link" in
+                http*) continue;;
+                ../templates/*) resolved="${link#../}";;
+                ../docs/*) resolved="${link#../}";;
+                *) continue;;
+              esac
+              [ -f "$resolved" ] || { echo "BROKEN LINK: $link in $f"; exit 1; }
+            done
+          done

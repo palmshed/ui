@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Components - palmshed/ui</title>
+  <meta name="description" content="Complete reference for all components in palmshed/ui with live previews and HTML source.">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/mark.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <style>
+    .preview { padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1rem; }
+    .preview + pre { margin-top: -0.5rem; }
+    .variant-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0.75rem 0; }
+    .component-section { margin-bottom: 3rem; }
+    .do-list { color: var(--accent); }
+    .dont-list { color: #e57373; }
+  </style>
+</head>
+<body>
+  <nav>
+    <span class="nav-mark">palmshed/ui</span>
+    <ul class="nav-links" id="nav">
+      <li><a href="/docs/index.html">Docs</a></li>
+      <li><a href="/docs/components.html" class="active">Components</a></li>
+      <li><a href="/docs/tokens.html">Tokens</a></li>
+      <li><a href="/docs/templates.html">Templates</a></li>
+    </ul>
+    <button type="button" class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Components</h1>
+      <p>Every component in palmshed/ui with live previews, variants, and accessibility notes.</p>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- Button -->
+    <section class="component-section">
+      <h2>Button</h2>
+      <p>Use for links and actions. Applies consistent sizing, border, and hover state.</p>
+
+      <div class="preview">
+        <div class="variant-row">
+          <a href="#" class="button">Primary</a>
+          <a href="#" class="button">Secondary</a>
+        </div>
+        <div class="variant-row">
+          <span class="badge">Default</span>
+          <span class="badge">Default</span>
+        </div>
+      </div>
+
+      <pre><code>&lt;a href="/signup" class="button"&gt;Get Started&lt;/a&gt;
+
+&lt;button type="button" class="button"&gt;Submit&lt;/button&gt;</code></pre>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li>Keyboard accessible by default (native <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>).</li>
+        <li>Visible focus state via <code>:focus-visible</code> in base styles.</li>
+        <li>Minimum touch target is approximately 34px.</li>
+      </ul>
+
+      <h3>Do's</h3>
+      <ul class="do-list">
+        <li>Use <code>&lt;a class="button"&gt;</code> for navigation, <code>&lt;button class="button"&gt;</code> for actions.</li>
+        <li>Keep button labels short and action-oriented.</li>
+      </ul>
+
+      <h3>Don'ts</h3>
+      <ul class="dont-list">
+        <li>Don't use <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code> as buttons.</li>
+        <li>Don't remove focus outlines.</li>
+      </ul>
+    </section>
+
+    <!-- Card -->
+    <section class="component-section">
+      <h2>Card</h2>
+      <p>Use for summarizing projects, linking to content, or grouping related information.</p>
+
+      <div class="preview">
+        <div class="card" style="max-width: 360px;">
+          <a href="#">
+            <div class="card-name">Project name</div>
+            <div class="card-desc">Short description of the project and what it does.</div>
+          </a>
+        </div>
+      </div>
+
+      <pre><code>&lt;div class="card"&gt;
+  &lt;a href="/project"&gt;
+    &lt;div class="card-name"&gt;Project name&lt;/div&gt;
+    &lt;div class="card-desc"&gt;Short description.&lt;/div&gt;
+  &lt;/a&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3>Variants</h3>
+      <p>Cards have one variant: linked (wrapping anchor) or static (no anchor).</p>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li>When using a linked card, the anchor provides the interactive target.</li>
+        <li>Do not nest interactive elements inside a linked card.</li>
+      </ul>
+
+      <h3>Do's</h3>
+      <ul class="do-list">
+        <li>Keep card names concise (1-3 words).</li>
+        <li>Use card descriptions as secondary text.</li>
+      </ul>
+
+      <h3>Don'ts</h3>
+      <ul class="dont-list">
+        <li>Don't put interactive elements (buttons, links) inside a linked card.</li>
+        <li>Don't use cards for data tables or long-form content.</li>
+      </ul>
+    </section>
+
+    <!-- Badge -->
+    <section class="component-section">
+      <h2>Badge</h2>
+      <p>Use for status indicators, version labels, or metadata.</p>
+
+      <div class="preview">
+        <div class="variant-row">
+          <span class="badge">stable</span>
+          <span class="badge">alpha</span>
+          <span class="badge">v1.0.0</span>
+        </div>
+      </div>
+
+      <pre><code>&lt;span class="badge"&gt;stable&lt;/span&gt;</code></pre>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li>Badges are decorative by default. If the badge conveys information not present in surrounding text, use <code>aria-label</code> or visually hidden text.</li>
+      </ul>
+
+      <h3>Do's</h3>
+      <ul class="do-list">
+        <li>Use short labels (1-2 words).</li>
+      </ul>
+
+      <h3>Don'ts</h3>
+      <ul class="dont-list">
+        <li>Don't use badges for interactive elements.</li>
+        <li>Don't use badges as the sole indicator of status - pair with text when critical.</li>
+      </ul>
+    </section>
+
+    <!-- Tag -->
+    <section class="component-section">
+      <h2>Tag</h2>
+      <p>Use for labels, categories, or taxonomy terms. Similar to badges but uppercase with distinct styling.</p>
+
+      <div class="preview">
+        <div class="variant-row">
+          <span class="tag">css</span>
+          <span class="tag">html</span>
+          <span class="tag">design</span>
+        </div>
+      </div>
+
+      <pre><code>&lt;span class="tag"&gt;css&lt;/span&gt;</code></pre>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li>Same guidance as badges - tags are decorative; pair with text if the label is essential.</li>
+      </ul>
+
+      <h3>Do's</h3>
+      <ul class="do-list">
+        <li>Use single words.</li>
+      </ul>
+
+      <h3>Don'ts</h3>
+      <ul class="dont-list">
+        <li>Don't use tags for interactive filtering without proper ARIA roles.</li>
+      </ul>
+    </section>
+
+    <!-- Alert -->
+    <section class="component-section">
+      <h2>Alert</h2>
+      <p>Use for status messages, notices, or warnings.</p>
+
+      <div class="preview">
+        <div class="alert alert-info">This is an informational message.</div>
+        <!-- Variant demonstration: using same class as placeholder -->
+        <div class="alert alert-info" style="border-color: var(--accent); color: var(--accent);">This is a note with accent border.</div>
+      </div>
+
+      <pre><code>&lt;div class="alert alert-info"&gt;
+  This is an informational message.
+&lt;/div&gt;</code></pre>
+
+      <h3>Variants</h3>
+      <table>
+        <thead><tr><th>Class</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>.alert-info</code></td><td>General information (default, one variant currently)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li>For critical alerts, add <code>role="alert"</code> to notify assistive technology.</li>
+        <li>For status updates that don't require immediate attention, use <code>role="status"</code>.</li>
+      </ul>
+
+      <h3>Do's</h3>
+      <ul class="do-list">
+        <li>Keep alert text brief and actionable.</li>
+      </ul>
+
+      <h3>Don'ts</h3>
+      <ul class="dont-list">
+        <li>Don't use alerts for permanent page content - use cards instead.</li>
+      </ul>
+    </section>
+
+    <!-- Input -->
+    <section class="component-section">
+      <h2>Input</h2>
+      <p>Use for text-based form inputs. Includes focus styling via <code>:focus</code>.</p>
+
+      <div class="preview">
+        <input type="text" class="input" placeholder="Enter your email" style="max-width: 360px;">
+      </div>
+
+      <pre><code>&lt;input type="text" class="input" placeholder="Enter your email"&gt;</code></pre>
+
+      <h3>Accessibility</h3>
+      <ul>
+        <li>Always pair inputs with a <code>&lt;label&gt;</code>.</li>
+        <li>Focus state uses accent border color for visibility.</li>
+      </ul>
+
+      <h3>Do's</h3>
+      <ul class="do-list">
+        <li>Use semantic <code>&lt;label&gt;</code> elements associated via <code>for</code> attribute.</li>
+        <li>Use appropriate <code>type</code> attributes (<code>email</code>, <code>url</code>, <code>search</code>, etc.).</li>
+      </ul>
+
+      <h3>Don'ts</h3>
+      <ul class="dont-list">
+        <li>Don't use <code>placeholder</code> as a substitute for labels.</li>
+      </ul>
+    </section>
+
+    <!-- Code block -->
+    <section class="component-section">
+      <h2>Code block</h2>
+      <p>Use for multi-line code examples. The <code>.code-block</code> class mirrors the <code>&lt;pre&gt;</code> styling.</p>
+
+      <div class="preview">
+        <div class="code-block">.example {<br>  color: var(--accent);<br>}</div>
+      </div>
+
+      <pre><code>&lt;div class="code-block"&gt;
+  .example {
+    color: var(--accent);
+  }
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <!-- HTTP method indicators -->
+    <section class="component-section">
+      <h2>HTTP method indicators</h2>
+      <p>Use for API endpoint documentation. Color-coded method labels.</p>
+
+      <div class="preview">
+        <div class="variant-row">
+          <span><span class="method method-get">GET</span> <code>/session</code></span>
+          <span><span class="method method-post">POST</span> <code>/session</code></span>
+        </div>
+      </div>
+
+      <pre><code>&lt;span class="method method-get"&gt;GET&lt;/span&gt; &lt;code&gt;/session&lt;/code&gt;</code></pre>
+
+      <h3>Variants</h3>
+      <table>
+        <thead><tr><th>Class</th><th>Color</th></tr></thead>
+        <tbody>
+          <tr><td><code>.method-get</code></td><td>Accent (<code>--accent</code>)</td></tr>
+          <tr><td><code>.method-post</code></td><td>Text (<code>--text</code>)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Palmshed</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/palmshed">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    (function() {
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var nav = document.getElementById('nav');
+      if (!toggle || !nav) return;
+      function sync() { toggle.setAttribute('aria-expanded', nav.classList.contains('active')); }
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('active');
+        sync();
+      });
+      document.addEventListener('click', function(e) {
+        if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== toggle) {
+          nav.classList.remove('active');
+          sync();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          sync();
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

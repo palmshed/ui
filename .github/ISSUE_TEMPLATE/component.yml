@@ -1,0 +1,34 @@
+name: Component request
+description: Propose a new component for palmshed/ui
+labels: [component]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Component description
+      description: What does this component do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: projects
+    attributes:
+      label: Projects that need this
+      description: Which Palmshed projects would use this component?
+    validations:
+      required: true
+
+  - type: textarea
+    id: html
+    attributes:
+      label: Proposed HTML structure
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Acceptance checklist
+      options:
+        - label: Implementable with HTML and CSS alone
+        - label: Accessible by default
+        - label: Can be documented with a complete example
+        - label: Does not increase complexity for existing users

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>palmshed/ui - Documentation</title>
+  <meta name="description" content="Documentation for palmshed/ui, the Palmshed shared design system.">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/mark.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+  <nav>
+    <span class="nav-mark">palmshed/ui</span>
+    <ul class="nav-links" id="nav">
+      <li><a href="/docs/index.html" class="active">Docs</a></li>
+      <li><a href="/docs/components.html">Components</a></li>
+      <li><a href="/docs/tokens.html">Tokens</a></li>
+      <li><a href="/docs/templates.html">Templates</a></li>
+    </ul>
+    <button type="button" class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>palmshed/ui</h1>
+      <p>Shared design system for Palmshed projects. Framework-agnostic CSS and HTML templates.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <section>
+      <h2>Quick start</h2>
+      <p>Link the CSS files in your HTML page:</p>
+      <pre><code>&lt;link rel="stylesheet" href="../css/tokens.css"&gt;
+&lt;link rel="stylesheet" href="../css/base.css"&gt;
+&lt;link rel="stylesheet" href="../css/layout.css"&gt;
+&lt;link rel="stylesheet" href="../css/typography.css"&gt;
+&lt;link rel="stylesheet" href="../css/components.css"&gt;</code></pre>
+    </section>
+
+    <section>
+      <h2>Documentation</h2>
+
+      <div class="card">
+        <a href="/docs/tokens.html">
+          <div class="card-name">Design tokens</div>
+          <div class="card-desc">Colors, fonts, spacing, and token policy.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/typography.html">
+          <div class="card-name">Typography</div>
+          <div class="card-desc">Headings, body text, code blocks, tables, and links.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/layout.html">
+          <div class="card-name">Layout</div>
+          <div class="card-desc">Navigation, hero, page container, footer, and mobile menu.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/components.html">
+          <div class="card-name">Components</div>
+          <div class="card-desc">Cards, buttons, badges, tags, alerts, inputs, and more.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/templates.html">
+          <div class="card-name">Templates</div>
+          <div class="card-desc">HTML starting points for 11 page types.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/accessibility.html">
+          <div class="card-name">Accessibility</div>
+          <div class="card-desc">Keyboard navigation, focus states, ARIA, and compliance.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/migration.html">
+          <div class="card-name">Migration guide</div>
+          <div class="card-desc">Moving from inline CSS to palmshed/ui.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/browser-support.html">
+          <div class="card-name">Browser support</div>
+          <div class="card-desc">Supported browsers and compatibility policy.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/examples.html">
+          <div class="card-name">Examples</div>
+          <div class="card-desc">Usage examples for different frameworks.</div>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="/docs/changelog.html">
+          <div class="card-name">Changelog</div>
+          <div class="card-desc">Version history and release notes.</div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Palmshed</p>
+    <ul class="footer-links">
+      <li><a href="https://github.com/palmshed">GitHub</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    (function() {
+      var toggle = document.querySelector('.mobile-menu-toggle');
+      var nav = document.getElementById('nav');
+      if (!toggle || !nav) return;
+      function sync() { toggle.setAttribute('aria-expanded', nav.classList.contains('active')); }
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nav.classList.toggle('active');
+        sync();
+      });
+      document.addEventListener('click', function(e) {
+        if (nav.classList.contains('active') && !nav.contains(e.target) && e.target !== toggle) {
+          nav.classList.remove('active');
+          sync();
+        }
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && nav.classList.contains('active')) {
+          nav.classList.remove('active');
+          sync();
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
