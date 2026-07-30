@@ -35,6 +35,7 @@ jobs:
           cp -r css site/
           cp -r assets site/
           cp -r examples site/
+          cp -r templates site/
 
           touch site/.nojekyll
 
