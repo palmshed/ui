@@ -37,13 +37,11 @@ jobs:
           cp -r examples site/
           cp -r templates site/
 
-          cat > site/index.html << 'REDIRECT'
-<!DOCTYPE html>
-<meta charset="utf-8">
-<title>palmshed/ui</title>
-<meta http-equiv="refresh" content="0; url=docs/">
-<script>location.replace("docs/");</script>
-REDIRECT
+          echo '<!DOCTYPE html>' > site/index.html
+          echo '<meta charset="utf-8">' >> site/index.html
+          echo '<title>palmshed/ui</title>' >> site/index.html
+          echo '<meta http-equiv="refresh" content="0; url=docs/">' >> site/index.html
+          echo '<script>location.replace("docs/");</script>' >> site/index.html
 
           touch site/.nojekyll
 

@@ -24,8 +24,9 @@ echo "=== Checking asset references ==="
 for f in templates/*.html docs/*.html; do
     for ref in $(grep -oE '(href|src)="[^"]+"' "$f" | sed 's/^[^"]*"//;s/"$//'); do
     case "$ref" in
-      http*|'#'*) continue ;;
-      ../*) target="${ref#../}" ;;
+      http*|'#'*|'') continue ;;
+      /*.css|/*.svg|/*.html|/*.md) target=".${ref}" ;;
+      ../*.css|../*.svg|../*.html|../*.md) target="${ref#../}" ;;
       *) continue ;;
     esac
     if [ ! -f "$target" ]; then
@@ -37,11 +38,13 @@ done
 
 echo "=== Checking internal links ==="
 for f in templates/*.html docs/*.html; do
+  dir=$(dirname "$f")
   for link in $(grep -oE 'href="[^"]*\.html"' "$f" | sed 's/^[^"]*"//;s/"$//'); do
     case "$link" in
-      http*) continue ;;
-      ../templates/*) target="${link#../}" ;;
-      ../docs/*) target="${link#../}" ;;
+      http*|'#'*) continue ;;
+      /*.html) target=".${link}" ;;
+      ../*.html) target="${link#../}" ;;
+      *.html) target="$dir/$link" ;;
       *) continue ;;
     esac
     if [ ! -f "$target" ]; then
