@@ -22,7 +22,7 @@ Use a vertical `<ul>` list for site navigation. The mobile menu is toggled with 
 
 ```html
 <nav>
-  <span class="nav-mark">palmshed</span>
+  <span class="nav-mark">palmshed/ui</span>
   <ul class="nav-links" id="nav">
     <li><a href="home.html" class="active">Home</a></li>
     <li><a href="docs.html">Docs</a></li>

@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-30
+
+### Added
+- Visible logo (`mark.svg`) in the docs nav header, linked to home
+- Root `index.html` that redirects to `docs/` on GitHub Pages
+
+### Changed
+- Docs pages now use `../css/` and `../assets/` paths — works locally, in CI, and on deployment without path rewriting
+- Deploy workflow preserves repository structure (docs served from `docs/` subdirectory)
+- Content container max-width increased from 960px to 1100px
+- Documentation cards: more padding, larger gaps, subtle hover state, fully clickable (`.card` on `<a>` directly)
+- Nav-mark consistency fixed across `STYLEGUIDE.md` and `examples/react-example.md`
+
 ## [0.2.0] - 2026-07-30
 
 ### Added

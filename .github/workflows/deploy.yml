@@ -29,13 +29,21 @@ jobs:
 
       - name: Prepare site
         run: |
-          mkdir site
+          mkdir -p site/docs
 
-          cp -r docs/* site/
+          cp -r docs/* site/docs/
           cp -r css site/
           cp -r assets site/
           cp -r examples site/
           cp -r templates site/
+
+          cat > site/index.html << 'REDIRECT'
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>palmshed/ui</title>
+<meta http-equiv="refresh" content="0; url=docs/">
+<script>location.replace("docs/");</script>
+REDIRECT
 
           touch site/.nojekyll
 

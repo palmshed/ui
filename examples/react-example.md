@@ -12,7 +12,7 @@ import '@/ui/css/components.css';
 export default function HomePage() {
   return (
     <nav>
-      <span className="nav-mark">palmshed</span>
+      <span className="nav-mark">palmshed/ui</span>
       <ul className="nav-links">
         <li><a href="/" className="active">Home</a></li>
         <li><a href="/projects">Projects</a></li>

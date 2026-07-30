@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Migration guide - palmshed/ui</title>
   <meta name="description" content="How to migrate from inline CSS to palmshed/ui.">
-  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/mark.svg">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/typography.css">
-  <link rel="stylesheet" href="css/components.css">
+  <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/mark.svg">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/components.css">
 </head>
 <body>
   <nav>
-    <span class="nav-mark">palmshed/ui</span>
+    <a href="index.html" class="nav-mark">
+      <img src="../assets/mark.svg" alt="" height="22" class="nav-logo">
+      palmshed/ui
+    </a>
     <ul class="nav-links" id="nav">
       <li><a href="index.html">Docs</a></li>
       <li><a href="components.html">Components</a></li>
@@ -36,11 +39,11 @@
     <section>
       <h2>Step 1: Link the CSS files</h2>
       <p>Add the palmshed/ui stylesheets to your page <code>&lt;head&gt;</code>:</p>
-      <pre><code>&lt;link rel="stylesheet" href="css/tokens.css"&gt;
-&lt;link rel="stylesheet" href="css/base.css"&gt;
-&lt;link rel="stylesheet" href="css/layout.css"&gt;
-&lt;link rel="stylesheet" href="css/typography.css"&gt;
-&lt;link rel="stylesheet" href="css/components.css"&gt;</code></pre>
+      <pre><code>&lt;link rel="stylesheet" href="../css/tokens.css"&gt;
+&lt;link rel="stylesheet" href="../css/base.css"&gt;
+&lt;link rel="stylesheet" href="../css/layout.css"&gt;
+&lt;link rel="stylesheet" href="../css/typography.css"&gt;
+&lt;link rel="stylesheet" href="../css/components.css"&gt;</code></pre>
       <p>Only include what you need. If you don't use tables, skip <code>typography.css</code>. If you don't use cards, skip <code>components.css</code>.</p>
     </section>
 
