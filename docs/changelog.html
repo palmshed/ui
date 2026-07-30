@@ -41,6 +41,42 @@
 
   <div class="page">
     <section>
+      <div class="version">v0.3.0 - Documentation UX polish</div>
+      <div class="release-date">2026-07-30</div>
+      <h3>Added</h3>
+      <ul>
+        <li>Visible logo (<code>mark.svg</code>) in the docs nav header, linked to home</li>
+        <li>Root <code>index.html</code> that redirects to <code>docs/</code> on GitHub Pages</li>
+      </ul>
+      <h3>Changed</h3>
+      <ul>
+        <li>Docs pages now use <code>../css/</code> and <code>../assets/</code> paths — works locally, in CI, and on deployment</li>
+        <li>Content container max-width increased from 960px to 1100px</li>
+        <li>Documentation cards: more padding, larger gaps, hover state, fully clickable</li>
+      </ul>
+    </section>
+
+    <section>
+      <div class="version">v0.2.0 - Documentation and tooling</div>
+      <div class="release-date">2026-07-30</div>
+      <h3>Added</h3>
+      <ul>
+        <li>Governance documentation (scope, release policy, component acceptance rule, definition of done)</li>
+        <li><code>TOKENS.md</code> - public design token reference with policy and guidelines</li>
+        <li>Living documentation site (<code>docs/</code>) with 11 pages built using palmshed/ui</li>
+        <li>CI workflow (<code>validate.yml</code>) — HTML validation, asset checks, link checking, template consistency</li>
+        <li>GitHub Pages deployment workflow (<code>deploy.yml</code>)</li>
+        <li>Issue templates and pull request template</li>
+        <li><code>scripts/validate.sh</code> - local validation script</li>
+      </ul>
+      <h3>Changed</h3>
+      <ul>
+        <li>All templates, docs, and examples now use relative CSS paths — no symlinks needed</li>
+        <li>README, CONTRIBUTING, and AGENTS.md updated with governance and deployment scenarios</li>
+      </ul>
+    </section>
+
+    <section>
       <div class="version">v0.1.0 - Initial release</div>
       <div class="release-date">Released</div>
       <h3>Added</h3>
