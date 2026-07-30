@@ -24,8 +24,8 @@ Use a vertical `<ul>` list for site navigation. The mobile menu is toggled with 
 <nav>
   <span class="nav-mark">palmshed</span>
   <ul class="nav-links" id="nav">
-    <li><a href="/templates/home.html" class="active">Home</a></li>
-    <li><a href="/templates/docs.html">Docs</a></li>
+    <li><a href="home.html" class="active">Home</a></li>
+    <li><a href="docs.html">Docs</a></li>
   </ul>
   <button type="button" class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">Menu</button>
 </nav>
